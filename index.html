@@ -1,431 +1,743 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Lim Li Ning - ePortfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<style>
-			
-			.profile-img {
-				width: 200px;
-				height: 200px;
-				border-radius: 50%;
-				object-fit: cover;
-				border: 5px solid #fff;
-				box-shadow: 0 0 20px rgba(0,0,0,0.1);
-				margin: 20px auto;
-				display: block;
-			}
-			
-			.certificate-img {
-				width: 100%;
-				max-height: 400px;
-				object-fit: contain;
-				border-radius: 8px;
-				margin: 20px 0;
-				border: 1px solid #ddd;
-			}
-			
-			.family-img {
-				width: 100%;
-				height: 300px;
-				object-fit: cover;
-				border-radius: 8px;
-			}
-			
-			.achievement-container {
-				display: flex;
-				flex-direction: column;
-				gap: 30px;
-			}
-			
-			.achievement-card {
-				background: white;
-				padding: 25px;
-				border-radius: 8px;
-				border: 1px solid #ddd;
-			}
-		</style>
-	</head>
-	<body class="is-preload">
+<head>
+    <title>Lim Li Ning - ePortfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .certificate-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        
+        .family-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .achievement-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .achievement-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .main-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c5aa0;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle-with-prompt {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0 10px 0;
+            color: #ff4081;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .subtitle-with-prompt:hover {
+            color: #d81b60;
+        }
+        
+        .tiny-prompt {
+            display: inline-flex;
+            align-items: center;
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            cursor: pointer;
+            border: 1px solid #90caf9;
+            transition: all 0.3s ease;
+        }
+        
+        .tiny-prompt:hover {
+            background: #bbdefb;
+            transform: translateY(-1px);
+        }
+        
+        .tiny-arrow {
+            margin-left: 4px;
+            font-size: 9px;
+            transition: transform 0.3s ease;
+        }
+        
+        .tiny-prompt.expanded .tiny-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .collapsible-content.expanded {
+            max-height: 2000px;
+        }
+        
+        .course-subtitle {
+            color: #4CAF50;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        
+        .family-subtitle {
+            color: #9C27B0;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        
+        .achievement-subtitle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #f57c00;
+            font-size: 15px;
+            margin: 10px 0 5px 0;
+            cursor: pointer;
+        }
+        
+        .achievement-subtitle .tiny-prompt {
+            background: #fff3e0;
+            color: #e65100;
+            border-color: #ffb74d;
+        }
+        
+        .achievement-subtitle .tiny-prompt:hover {
+            background: #ffe0b2;
+        }
+        
+        .certificate-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            margin-top: 10px;
+        }
+        
+        .certificate-details.expanded {
+            max-height: 1000px;
+        }
+        
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .education-item {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+        
+        .education-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .education-item p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 992px) {
+            .education-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <div id="wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">LIM LI NING</a></h1>
-						<nav class="links">
-							<ul>
-								<li><a href="#about">ABOUT ME</a></li>
-								<li><a href="#education">EDUCATION</a></li>
-								<li><a href="#course">COURSE</a></li>
-								<li><a href="#achievement">ACHIEVEMENT</a></li>
-								<li><a href="#family">FAMILY</a></li>
-								<li><a href="#contact">CONTACT</a></li>
-							</ul>
-						</nav>
-						<nav class="main">
-							<ul>
-								<li class="menu">
-									<a class="fa-bars" href="#menu">Menu</a>
-								</li>
-							</ul>
-						</nav>
-					</header>
+        <header id="header">
+            <h1><a href="index.html">LIM LI NING</a></h1>
+            <nav class="links">
+                <ul>
+                    <li><a href="#about">ABOUT ME</a></li>
+                    <li><a href="#education">EDUCATION</a></li>
+                    <li><a href="#course">COURSE</a></li>
+                    <li><a href="#achievement">ACHIEVEMENT</a></li>
+                    <li><a href="#family">FAMILY</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+            <nav class="main">
+                <ul>
+                    <li class="menu">
+                        <a class="fa-bars" href="#menu">Menu</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-				<!-- Menu -->
-					<section id="menu">
-						<!-- Links -->
-							<section>
-								<ul class="links">
-									<li>
-										<a href="#about">
-											<h3>About Me</h3>
-											<p>Personal Information</p>
-										</a>
-									</li>
-									<li>
-										<a href="#education">
-											<h3>Education</h3>
-											<p>Academic Background</p>
-										</a>
-									</li>
-									<li>
-										<a href="#course">
-											<h3>Course</h3>
-											<p>Current Studies</p>
-										</a>
-									</li>
-									<li>
-										<a href="#achievement">
-											<h3>Achievement</h3>
-											<p>Certificates & Awards</p>
-										</a>
-									</li>
-									<li>
-										<a href="#family">
-											<h3>Family</h3>
-											<p>Family Background</p>
-										</a>
-									</li>
-									<li>
-										<a href="#contact">
-											<h3>Contact</h3>
-											<p>Contact Information</p>
-										</a>
-									</li>
-								</ul>
-							</section>
-					</section>
+        <section id="menu">
+            <section>
+                <ul class="links">
+                    <li>
+                        <a href="#about">
+                            <h3>About Me</h3>
+                            <p>Personal Information</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#education">
+                            <h3>Education</h3>
+                            <p>Academic Background</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#course">
+                            <h3>Course</h3>
+                            <p>Current Studies</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#achievement">
+                            <h3>Achievement</h3>
+                            <p>Certificates & Awards</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#family">
+                            <h3>Family</h3>
+                            <p>Family Background</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <h3>Contact</h3>
+                            <p>Contact Information</p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </section>
 
-				<!-- Main -->
-					<div id="main">
+        <div id="main">
 
-						<!-- Welcome Post -->
-							<article class="post" id="welcome">
-								<header>
-									<div class="title">
-										<h2>Hi~~~ welcome to my eportfolio~</h2>
-										<p>A Data Engineering Student at Universiti Teknologi Malaysia</p>
-									</div>
-									<div class="meta">
-										<span class="name">LIM LI NING</span>
-										
-										<img src="images/photo_2025-12-07_14-53-30.jpg" alt="Lim Li Ning" class="author profile-img-small"    style="width: 200px; 
-            						 height: 200px; 
-           							 object-fit: cover; 
-            						 border-radius: 8px;
-                                     border: 2px solid #2c5aa0;">
-									</div>
-					
-							</article>
+            <article class="post" id="welcome">
+                <header>
+                    <div class="title">
+                        <h2 class="main-title">Hi~~~ welcome to my eportfolio~</h2>
+                        <p>A Data Engineering Student at Universiti Teknologi Malaysia</p>
+                    </div>
+                    <div class="meta">
+                        <span class="name">LIM LI NING</span>
+                        <img src="images/photo_2025-12-07_14-53-30.jpg" alt="Lim Li Ning" class="author profile-img-small" style="width: 200px; height: 200px; object-fit: cover; border-radius: 8px; border: 2px solid #2c5aa0;">
+                    </div>
+                </header>
+            </article>
 
-						<!-- About Me -->
-							<article class="post" id="about">
-								<header>
-									<div class="title">
-										<h2>About Me</h2>
-									</div>
-								</header>
-								<div style="padding: 30px; text-align: center;">
-									
-									<img src="images/photo_2025-12-07_14-49-43.jpg" alt="About Me Photo"  style="width: 300px; height: 300px; 
-                    object-fit: cover; 
-                    border-radius: 50%;
-                    border: 8px solid #2c5aa0;
-                    margin-bottom: 30px;" />
-									<p style="font-size: 20px; line-height: 1.8;">
-										*I am come from Muar,Johor .I am a first years Data engineering student at UNIVERSITI TEKNOLOGI MALAYSIA<br>
-										*Currently focusing on building a strong foundation in my studies
-									</p>
-								</div>
-							</article>
+            <article class="post" id="about">
+                <header>
+                    <div class="title">
+                        <h2 class="main-title">About Me</h2>
+                    </div>
+                </header>
+                <div style="padding: 30px; text-align: center;">
+                    <div class="subtitle-with-prompt" onclick="toggleContent('about-photo')">
+                        Personal Photo
+                        <span class="tiny-prompt" onclick="toggleContent('about-photo'); event.stopPropagation();">
+                            View
+                            <span class="tiny-arrow">▼</span>
+                        </span>
+                    </div>
+                    <div class="collapsible-content" id="about-photo">
+                        <img src="images/photo_2025-12-07_14-49-43.jpg" alt="About Me Photo" style="width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 8px solid #2c5aa0; margin-bottom: 30px;" />
+                    </div>
+                    
+                    <div class="subtitle-with-prompt" onclick="toggleContent('about-info')">
+                        Personal Information
+                        <span class="tiny-prompt" onclick="toggleContent('about-info'); event.stopPropagation();">
+                            Read
+                            <span class="tiny-arrow">▼</span>
+                        </span>
+                    </div>
+                    <div class="collapsible-content" id="about-info">
+                        <p style="font-size: 20px; line-height: 1.8;">
+                            *I am come from Muar,Johor .I am a first years Data engineering student at UNIVERSITI TEKNOLOGI MALAYSIA<br>
+                            *Currently focusing on building a strong foundation in my studies
+                        </p>
+                    </div>
+                </div>
+            </article>
 
-						<!-- Education -->
-							<article class="post" id="education">
-								<header>
-									<div class="title">
-										<h2>Education Background</h2>
-									</div>
-								</header>
-								<div style="padding: 30px;">
-									<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
-										
-										<div style="text-align: center;">
-											<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStccynX2Vafyl3Jok8QRQa6yL3GwFKj_LNzw&s" alt="SJK(C) SING HWA" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
-											<p><li><a href="https://ms.wikipedia.org/wiki/Sekolah_Jenis_Kebangsaan_(C)_Sing_Hwa"></li><strong>SJK(C) SING HWA</strong><br>Primary School</p></a>
-										</div>
-										<div style="text-align: center;">
-											<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvTKmMddYvuhWc-ykzWGDj4TF_MO0EGfl6YA&s" alt="SMK TUN PERAK" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
-											<p><li><a href="https://ms.wikipedia.org/wiki/Sekolah_Menengah_Kebangsaan_Tun_Perak,_Johor"></li><strong>SMK TUN PERAK</strong><br>Secondary School</p></a>
-										</div>
-										<div style="text-align: center;">
-											<img src="https://upload.wikimedia.org/wikipedia/en/b/b2/Kolej_Matrikulasi_Johor_%28Logo%29.png" alt="KOLEJ MATRIKULASI JOHOR" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
-											<p><li><a href="https://en.wikipedia.org/wiki/Johor_Matriculation_College"></li><strong>KOLEJ MATRIKULASI JOHOR</strong><br>Pre-University</p></a>
-										</div>
-										<div style="text-align: center;">
-											<img src="https://upload.wikimedia.org/wikipedia/commons/8/81/UTM-LOGO.png" alt="UTM" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
-											<p><li><a href="https://www.utm.my"></li><strong>UNIVERSITI TEKNOLOGI MALAYSIA</strong><br>University</p></a>
-										</div>
-									</div>
-								</div>
-							</article>
+            <article class="post" id="education">
+                <header>
+                    <div class="title">
+                        <h2 class="main-title">Education Background</h2>
+                    </div>
+                </header>
+                <div style="padding: 30px;">
+                    <div class="subtitle-with-prompt" onclick="toggleContent('education-details')">
+                        Educational Institutions
+                        <span class="tiny-prompt" onclick="toggleContent('education-details'); event.stopPropagation();">
+                            View All
+                            <span class="tiny-arrow">▼</span>
+                        </span>
+                    </div>
+                    <div class="collapsible-content expanded" id="education-details">
+                        <div class="education-grid">
+                            <div class="education-item">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStccynX2Vafyl3Jok8QRQa6yL3GwFKj_LNzw&s" alt="SJK(C) SING HWA" />
+                                <p><strong>SJK(C) SING HWA</strong></p>
+                                <p>Primary School</p>
+                                <p><a href="https://ms.wikipedia.org/wiki/Sekolah_Jenis_Kebangsaan_(C)_Sing_Hwa">More Info</a></p>
+                            </div>
+                            <div class="education-item">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvTKmMddYvuhWc-ykzWGDj4TF_MO0EGfl6YA&s" alt="SMK TUN PERAK" />
+                                <p><strong>SMK TUN PERAK</strong></p>
+                                <p>Secondary School</p>
+                                <p><a href="https://ms.wikipedia.org/wiki/Sekolah_Menengah_Kebangsaan_Tun_Perak,_Johor">More Info</a></p>
+                            </div>
+                            <div class="education-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/en/b/b2/Kolej_Matrikulasi_Johor_%28Logo%29.png" alt="KOLEJ MATRIKULASI JOHOR" />
+                                <p><strong>KOLEJ MATRIKULASI JOHOR</strong></p>
+                                <p>Pre-University</p>
+                                <p><a href="https://en.wikipedia.org/wiki/Johor_Matriculation_College">More Info</a></p>
+                            </div>
+                            <div class="education-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/UTM-LOGO.png" alt="UTM" />
+                                <p><strong>UNIVERSITI TEKNOLOGI MALAYSIA</strong></p>
+                                <p>University</p>
+                                <p><a href="https://www.utm.my">More Info</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-						<!-- Course -->
-							<article class="post" id="course">
-								<header>
-									<div class="title">
-										<h2>Current Courses</h2>
-									</div>
-								</header>
-								<div style="padding: 30px;">
+            <article class="post" id="course">
+                <header>
+                    <div class="title">
+                        <h2 class="main-title">Current Courses</h2>
+                    </div>
+                </header>
+                <div style="padding: 30px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                        <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                            <div class="course-subtitle" onclick="toggleContent('secp-course')">
+                                SECP
+                                <span class="tiny-prompt" onclick="toggleContent('secp-course'); event.stopPropagation();">
+                                    Info
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="secp-course">
+                                <p><a href="https://github.com/limlining/SECP-TEKNOLOGY-INFORMATION-SYSTEM">TEKNOLOGI & INFORMATION SYSTEM</a></p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                            <div class="course-subtitle" onclick="toggleContent('secr-course')">
+                                SECR
+                                <span class="tiny-prompt" onclick="toggleContent('secr-course'); event.stopPropagation();">
+                                    Info
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="secr-course">
+                                <p><a href="https://github.com/limlining/SECR-DIGITAL-LOGIC">DIGITAL LOGIC</a></p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                            <div class="course-subtitle" onclick="toggleContent('seci-course')">
+                                SECI
+                                <span class="tiny-prompt" onclick="toggleContent('seci-course'); event.stopPropagation();">
+                                    Info
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="seci-course">
+                                <p><a href="https://github.com/limlining/SECI--DISCRETE-STRUCTURE">DISCREATE STRUCTURE</a></p>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                            <div class="course-subtitle" onclick="toggleContent('secj-course')">
+                                SECJ
+                                <span class="tiny-prompt" onclick="toggleContent('secj-course'); event.stopPropagation();">
+                                    Info
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="secj-course">
+                                <p><a href="https://github.com/limlining/SECJ-PROGRAMMING-TECHONOLOGY-">PROGRAMMING TECNIQUE 1</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #e8f4fd; padding: 20px; border-radius: 8px;">
+                        <div class="course-subtitle" onclick="toggleContent('data-engineering')">
+                            DATA ENGINEERING
+                            <span class="tiny-prompt" onclick="toggleContent('data-engineering'); event.stopPropagation();">
+                                Notes
+                                <span class="tiny-arrow">▼</span>
+                            </span>
+                        </div>
+                        <div class="collapsible-content" id="data-engineering">
+                            <p>how to attact to the note ??all web inside the link tab WEB NOTE below<br></p>
+                            <a href="https://limlining.github.io/web-note/">WEB NOTE</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-									
-									<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-										<div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
-											<h4>SECP</h4>
-											<p><a href="https://github.com/limlining/SECP-TEKNOLOGY-INFORMATION-SYSTEM">TEKNOLOGI & INFORMATION SYSTEM</p></a>
-										</div>
-										<div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
-											<h4>SECR</h4>
-											<p><a href="https://github.com/limlining/SECR-DIGITAL-LOGIC">DIGITAL LOGIC</p></a>
-										</div>
-										<div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
-											<h4>SECI</h4>
-											<p><a href="https://github.com/limlining/SECI--DISCRETE-STRUCTURE">DISCREATE STRUCTURE</p></a>
-										</div>
-										<div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
-											<h4>SECJ</h4>
-											<p><a href="https://github.com/limlining/SECJ-PROGRAMMING-TECHONOLOGY-">PROGRAMMING TECNIQUE 1</p></a>
-										</div>
-									</div>
-									<div style="background: #e8f4fd; padding: 20px; border-radius: 8px;">
-										<h4>DATA ENGINEERING</h4>
-										<p>how to attact to the note ??all web inside the link tab WEB NOTE below<br></p>
-										<a href="https://limlining.github.io/web-note/">WEB NOTE</a>
-									</div>
-								</div>
-							</article>
+            <article class="post" id="achievement">
+                <header>
+                    <div class="title">
+                        <h2 class="main-title">Achievements & Certificates</h2>
+                    </div>
+                </header>
+                <div style="padding: 30px;">
+                    <div class="achievement-container">
+                        <div class="achievement-card">
+                            <div class="achievement-subtitle" onclick="toggleCertificate('achievement1')">
+                                IMETPC 2025 - Bronze Medal
+                                <span class="tiny-prompt" onclick="toggleCertificate('achievement1'); event.stopPropagation();">
+                                    Certificate
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="certificate-details" id="achievement1">
+                                <img src="images/Screenshot 2025-12-07 160105.png" alt="IMETPC Certificate 2025" class="certificate-img" />
+                                <p><strong>LEADER:LIM LI NING</strong></p>
+                                <p>International Mechanical Engineering and Technology Center Competition (IMETPC)<br>
+                                Held in conjunction with Mechanical Open Day 2025 at UTHM--ONLINE</p>
+                                <p><strong>Project Title:</strong> INTEGRATED ESCAPE ROOM</p>
+                                <div style="background: #cd7f32; color: white; padding: 8px 20px; border-radius: 20px; display: inline-block; margin-top: 10px;">
+                                    <strong>BRONZE MEDAL</strong>
+                                </div>
+                                <p style="margin-top: 15px;"><strong>IN 2025,</strong> take part IMETPC in UTHM and success got Bronze</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-subtitle" onclick="toggleCertificate('achievement2')">
+                                e-Invossi 2024 - Silver Medal
+                                <span class="tiny-prompt" onclick="toggleCertificate('achievement2'); event.stopPropagation();">
+                                    Certificate
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="certificate-details" id="achievement2">
+                                <img src="images/Screenshot 2025-12-07 160119.png" alt="e-Invossi Certificate 2024" class="certificate-img" />
+                                <p><strong>LEADER:Lim Li Ning</strong></p>
+                                <p>SILVER MEDAL in the e-Invossi Competition 2024<br>
+                                International Medical University (IMU) Learning Resources Festival 2024</p>
+                                <p><strong>Project Title:</strong> ANTI DY/DX</p>
+                                <div style="background-color: #f0f0f0; padding: 8px 12px; border-radius: 20px; display: inline-block;">
+                                    <strong>SILVER MEDAL</strong>
+                                </div>
+                                <p style="margin-top: 15px;"><strong>IN 2024,</strong> take part ILIF online in IMU and success got SILVER</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-subtitle" onclick="toggleCertificate('achievement3')">
+                                IIEF 2025 - Silver Medal
+                                <span class="tiny-prompt" onclick="toggleCertificate('achievement3'); event.stopPropagation();">
+                                    Certificate
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="certificate-details" id="achievement3">
+                                <img src="images/Screenshot 2025-12-07 160139.png" alt="IIEF Certificate 2025" class="certificate-img" />
+                                <p><strong>LEADER:LIM LI NING</strong></p>
+                                <p>SILVER MEDAL in the IIEF COMPETITION<br>
+                                Held in KOLEJ KULIM MARA</p>
+                                <p><strong>Project Title:</strong> INTEGRATED ESCAPE ROOM</p>
+                                <a href="https://drive.google.com/file/d/1Cw1tIn4BON-fvLbiJmm56HTMqnQRveim/view?usp=drive_link">IER PDF</a><p>....project pdf..tape it...</p><br>
+                                <div style="background-color: #f0f0f0; padding: 8px 12px; border-radius: 20px; display: inline-block;">
+                                    <strong>MEDAL MEDAL</strong>
+                                </div>
+                                <p style="margin-top: 15px;"><strong>IN 2025,</strong> take part IIEF and success got Silver</p>
+                                <img src="images/utm.png" alt="e-Invossi Project" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin: 15px 0;" />
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-subtitle" onclick="toggleCertificate('achievement4')">
+                                K3M 2025 - Merit
+                                <span class="tiny-prompt" onclick="toggleCertificate('achievement4'); event.stopPropagation();">
+                                    Certificate
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="certificate-details" id="achievement4">
+                                <img src="images/Screenshot 2025-12-08 161635.png" alt="K3M Certificate 2025" class="certificate-img" />
+                                <p><strong>LLIM LI NING</strong></p>
+                                <p>SILVER MEDAL in the K3M COMPETITION</p>
+                                <p><strong>Project Title:</strong> K3M</p>
+                                <div style="background-color: #f0f0f0; padding: 8px 12px; border-radius: 20px; display: inline-block;">
+                                    <strong>MERIT</strong>
+                                </div>
+                                <p style="margin-top: 15px;"><strong>IN 2025,</strong> take part K3M and success got Merit</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-						<!-- Achievement -->
-							<article class="post" id="achievement">
-								<header>
-									<div class="title">
-										<h2>Achievements & Certificates</h2>
-									</div>
-								</header>
-								<div style="padding: 30px;">
-									<div class="achievement-container">
-										<!-- Achievement 1 -->
-										<div class="achievement-card">
-											<h3 style="color: #2c5aa0;">CERTIFICATE of Achievement - 2025</h3>
-											
-											<img src="images/Screenshot 2025-12-07 160105.png" alt="IMETPC Certificate 2025" class="certificate-img" />
-											<p><strong>LEADER:LIM LI NING</strong></p>
-											<p>International Mechanical Engineering and Technology Center Competition (IMETPC)<br>
-											Held in conjunction with Mechanical Open Day 2025 at UTHM--ONLINE</p>
-											<p><strong>Project Title:</strong> INTEGRATED ESCAPE ROOM</p>
-											<div style="background: #cd7f32; color: white; padding: 8px 20px; border-radius: 20px; display: inline-block; margin-top: 10px;">
-												<strong>BRONZE MEDAL</strong>
-											</div>
-											<p style="margin-top: 15px;"><strong>IN 2025,</strong> take part IMETPC in UTHM and success got Bronze</p>
-										</div>
-										
-										<!-- Achievement 2 -->
-										<div class="achievement-card">
-											<h3 style="color: #2c5aa0;">CERTIFICATE OF ACHIEVEMENT - 2024</h3>
-									
-											<img src="images/Screenshot 2025-12-07 160119.png" alt="e-Invossi Certificate 2024" class="certificate-img" />
-											<p><strong>LEADER:Lim Li Ning</strong></p>
-											<p>SILVER MEDAL in the e-Invossi Competition 2024<br>
-											International Medical University (IMU) Learning Resources Festival 2024</p>
-											<p><strong>Project Title:</strong> ANTI DY/DX</p>
-											<div style="background-color: #f0f0f0; padding: 8px 12px; border-radius: 20px; display: inline-block;">
-  											<strong>SILVER MEDAL</strong>
-											</div>
-											<p style="margin-top: 15px;"><strong>IN 2024,</strong> take part ILIF online in IMU and success got SILVER</p>
-										</div>
-										<div style="padding: 30px;">
-									<div class="achievement-container">
-										<!-- Achievement 3 -->
-										<div class="achievement-card">
-											<h3 style="color: #2c5aa0;">CERTIFICATE of Achievement - 2025</h3>
-											<img src="images/Screenshot 2025-12-07 160139.png" alt="IIEF Certificate 2025" class="certificate-img" />
-											<p><strong>LEADER:LIM LI NING</strong></p>
-											<p>SILVER MEDAL in the IIEF COMPETITION<br>
-											Held in KOLEJ KULIM MARA</p>
-											<p><strong>Project Title:</strong> INTEGRATED ESCAPE ROOM</p>
-											<a href="https://drive.google.com/file/d/1Cw1tIn4BON-fvLbiJmm56HTMqnQRveim/view?usp=drive_link">IER PDF</a><p>....project pdf..tape it...</p><br>
-											<div style="background-color: #f0f0f0; padding: 8px 12px; border-radius: 20px; display: inline-block;">
-												<strong>MEDAL MEDAL</strong>
-											</div>
-											<p style="margin-top: 15px;"><strong>IN 2025,</strong> take part IIEF and success got Silver</p>
-											<img src="images/utm.png" alt="e-Invossi Project" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin: 15px 0;" />
-											<div style="background: #c0c0c0; color: #333; padding: 8px 20px; border-radius: 20px; display: inline-block; margin-top: 10px;"></div>di
-										</div>
-										<!-- Achievement 4 -->
-										<div class="achievement-card">
-											<h3 style="color: #2c5aa0;">CERTIFICATE of Achievement - 2025</h3>
-											
-											<img src="images/Screenshot 2025-12-08 161635.png" alt=" K3M Certificate 2025" class="certificate-img" />
-											<p><strong>LLIM LI NING</strong></p>
-											<p>SILVER MEDAL in the K3M COMPETITION<br>
-											<p><strong>Project Title:</strong> K3M</p>
-											<div style="background-color: #f0f0f0; padding: 8px 12px; border-radius: 20px; display: inline-block;">
-												<strong>MERIT </strong>
-											</div>
-											<p style="margin-top: 15px;"><strong>IN 2025,</strong> take part K3M and success got Merit</p>
-										</div>
-										</div>
-									</div>
-								</div>
-							</article>
+            <article class="post" id="family">
+                <header>
+                    <div class="title">
+                        <h2 class="main-title">My Beloved Family</h2>
+                    </div>
+                </header>
+                <div style="padding: 30px;">
+                    <div class="family-subtitle" onclick="toggleContent('family-photo')">
+                        Family Photo
+                        <span class="tiny-prompt" onclick="toggleContent('family-photo'); event.stopPropagation();">
+                            View
+                            <span class="tiny-arrow">▼</span>
+                        </span>
+                    </div>
+                    <div class="collapsible-content" id="family-photo">
+                        <img src="images/JOH09069-2[2].jpg" alt="Family Photo" class="family-img" />
+                    </div>
+                    
+                    <div class="family-subtitle" onclick="toggleContent('siblings-info')">
+                        Siblings Information
+                        <span class="tiny-prompt" onclick="toggleContent('siblings-info'); event.stopPropagation();">
+                            Info
+                            <span class="tiny-arrow">▼</span>
+                        </span>
+                    </div>
+                    <div class="collapsible-content" id="siblings-info">
+                        <div style="display: flex; gap: 40px; align-items: center; margin-top: 20px;">
+                            <div style="flex: 1;"></div>
+                            <div style="flex: 1;">
+                                <p style="font-size: 18px; line-height: 1.8;">
+                                    I am the youngest in my family, the eight child.
+                                </p>
+                                <img src="images/family photo.png" alt="Siblings" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 20px;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-						<!-- Family -->
-							<article class="post" id="family">
-								<header>
-									<div class="title">
-										<h2>My Beloved Family</h2>
-									</div>
-								</header>
-								<div style="padding: 30px;">
+            <article class="post" id="contact">
+                <header>
+                    <div class="title">
+                        <h2 class="main-title">Contact Me</h2>
+                    </div>
+                </header>
+                <div style="padding: 30px;">
+                    <div style="display: flex; align-items: center; gap: 40px; margin-bottom: 30px;">
+                        <div style="flex: 1;">
+                            <div class="subtitle-with-prompt" onclick="toggleContent('github-contact')">
+                                GitHub
+                                <span class="tiny-prompt" onclick="toggleContent('github-contact'); event.stopPropagation();">
+                                    Link
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="github-contact">
+                                <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                                    <p style="font-size: 18px;"><a href="https://github.com/limlining">https://github.com/limlining</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="subtitle-with-prompt" onclick="toggleContent('linkedin-contact')" style="margin-top: 15px;">
+                                LinkedIn
+                                <span class="tiny-prompt" onclick="toggleContent('linkedin-contact'); event.stopPropagation();">
+                                    Link
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="linkedin-contact">
+                                <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                                    <p style="font-size: 18px;"><a href="http://www.linkedin.com/in/lim-li-ning-aa3117399">http://www.linkedin.com/in/lim-li-ning-aa3117399</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="flex: 1;">
+                            <div class="subtitle-with-prompt" onclick="toggleContent('email-contact')">
+                                Email
+                                <span class="tiny-prompt" onclick="toggleContent('email-contact'); event.stopPropagation();">
+                                    View
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="email-contact">
+                                <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 20px;">
+                                    <p style="font-size: 18px;">limlining@graduate.utm.my</p>
+                                </div>
+                            </div>
+                            
+                            <div class="subtitle-with-prompt" onclick="toggleContent('phone-contact')">
+                                Phone
+                                <span class="tiny-prompt" onclick="toggleContent('phone-contact'); event.stopPropagation();">
+                                    View
+                                    <span class="tiny-arrow">▼</span>
+                                </span>
+                            </div>
+                            <div class="collapsible-content" id="phone-contact">
+                                <div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
+                                    <p style="font-size: 18px;">018-395 6941</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-									<img src="images/JOH09069-2[2].jpg" alt="Family Photo" class="family-img" />
-									<div style="display: flex; gap: 40px; align-items: center; margin-top: 40px;">
-										<div style="flex: 1;">
-										</div>
-										<div style="flex: 1;">
-											<p style="font-size: 18px; line-height: 1.8;">
-												I am the youngest in my family, the eight child.
-											</p>
-											
-											<img src="images/family photo.png" alt="Siblings" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-top: 20px;" />
-										</div>
-									</div>
-								</div>
-							</article>
+        </div>
 
-						<!-- Contact -->
-							<article class="post" id="contact">
-								<header>
-									<div class="title">
-										<h2>Contact Me</h2>
-									</div>
-								</header>
-								<div style="padding: 30px;">
-									<div style="display: flex; align-items: center; gap: 40px; margin-bottom: 30px;">
-										<div style="flex: 1;">
-											<div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
-												<h4 style="color: #2c5aa0;">GITHUB</h4>
-												<p style="font-size: 18px;"><a href="https://github.com/limlining">https://github.com/limlining</p></a>
-											</div>
-											<div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
-												<h4 style="color: #2c5aa0;">linkedin</h4>
-												<p style="font-size: 18px;"><a href="http://www.linkedin.com/in/lim-li-ning-aa3117399">http://www.linkedin.com/in/lim-li-ning-aa3117399</p></a>
-											</div>
-											
-										</div>
-										<div style="flex: 1;">
-											<div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 20px;">
-												<h4 style="color: #2c5aa0;">Email</h4>
-												<p style="font-size: 18px;">limlining@graduate.utm.my</p>
-											</div>
-											<div style="background: #f8f9fa; padding: 25px; border-radius: 8px;">
-												<h4 style="color: #2c5aa0;">Phone</h4>
-												<p style="font-size: 18px;">018-395 6941</p>
-											</div>
-										</div>
-								</div>
-							</article>
+        <section id="sidebar">
+            <section id="intro">
+                <header>
+                    <img src="images/photo_2025-12-08_17-49-42.jpg" alt="Lim Li Ning" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px; display: block;" />
+                    <h2>Lim Li Ning</h2>
+                    <p>Data Engineering Student<br>Universiti Teknologi Malaysia</p>
+                </header>
+            </section>
 
-					</div>
+            <section>
+                <div class="mini-posts">
+                    <article class="mini-post">
+                        <header>
+                            <h3><a href="#">At UTM</a></h3>
+                            <span class="published">Campus Life</span>
+                        </header>
+                        <a href="#" class="image"><img src="https://www.utm.my/wp-content/uploads/sites/554/2019/05/IMG_0028.jpg" alt="UTM Life" /></a>
+                    </article>
+                    <article class="mini-post">
+                        <header>
+                            <h3><a href="#">Study Time</a></h3>
+                            <span class="published">Learning</span>
+                        </header>
+                        <a href="#" class="image"><img src="images/photo_2025-12-08_17-55-47.jpg" alt="Study" /></a>
+                    </article>
+                    <article class="mini-post">
+                        <header>
+                            <h3><a href="#">Achievements</a></h3>
+                            <span class="published">Awards</span>
+                        </header>
+                        <a href="#" class="image"><img src="images/photo_2025-12-08_18-09-59.jpg" alt="Award" /></a>
+                    </article>
+                    <article class="mini-post">
+                        <header>
+                            <h3><a href="#">Family Time</a></h3>
+                            <span class="published">Family</span>
+                        </header>
+                        <a href="#" class="image"><img src="images/photo_2025-12-08_18-44-02.jpg" alt="Family" /></a>
+                    </article>
+                </div>
+            </section>
 
-				<!-- Sidebar -->
-					<section id="sidebar">
-						<!-- Intro -->
-							<section id="intro">
-								<header>
-									
-									<img src="images/photo_2025-12-08_17-49-42.jpg" alt="Lim Li Ning" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px; display: block;" />
-									<h2>Lim Li Ning</h2>
-									<p>Data Engineering Student<br>Universiti Teknologi Malaysia</p>
-								</header>
-							</section>
+            <section id="footer">
+                <p class="copyright">© 2025 Lim Li Ning. All Rights Reserved.</p>
+            </section>
+        </section>
+    </div>
 
-						
-							<section>
-								<div class="mini-posts">
-									<article class="mini-post">
-										<header>
-											<h3><a href="#">At UTM</a></h3>
-											<span class="published">Campus Life</span>
-										</header>
-										<a href="#" class="image"><img src="https://www.utm.my/wp-content/uploads/sites/554/2019/05/IMG_0028.jpg" alt="UTM Life" /></a>
-									</article>
-									<article class="mini-post">
-										<header>
-											<h3><a href="#">Study Time</a></h3>
-											<span class="published">Learning</span>
-										</header>
-										<a href="#" class="image"><img src="images/photo_2025-12-08_17-55-47.jpg" alt="Study" /></a>
-									</article>
-									<article class="mini-post">
-										<header>
-											<h3><a href="#">Achievements</a></h3>
-											<span class="published">Awards</span>
-										</header>
-										<a href="#" class="image"><img src="images/photo_2025-12-08_18-09-59.jpg" alt="Award" /></a>
-									</article>
-									<article class="mini-post">
-										<header>
-											<h3><a href="#">Family Time</a></h3>
-											<span class="published">Family</span>
-										</header>
-										<a href="#" class="image"><img src="images/photo_2025-12-08_18-44-02.jpg" alt="Family" /></a>
-									</article>
-								</div>
-							</section>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-						<!-- Footer -->
-							<section id="footer">
-								<p class="copyright">© 2025 Lim Li Ning. All Rights Reserved.</p>
-							</section>
+    <script>
+        function toggleContent(contentId) {
+            const content = document.getElementById(contentId);
+            if (content) {
+                content.classList.toggle('expanded');
+                
+                const prompt = content.previousElementSibling?.querySelector('.tiny-prompt');
+                if (prompt) {
+                    prompt.classList.toggle('expanded');
+                }
+            }
+        }
+        
+        function toggleCertificate(certificateId) {
+            const content = document.getElementById(certificateId);
+            if (content) {
+                content.classList.toggle('expanded');
+                
+                const prompt = content.previousElementSibling?.querySelector('.tiny-prompt');
+                if (prompt) {
+                    prompt.classList.toggle('expanded');
+                }
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            const educationContent = document.getElementById('education-details');
+            if (educationContent) {
+                educationContent.classList.add('expanded');
+                const prompt = educationContent.previousElementSibling?.querySelector('.tiny-prompt');
+                if (prompt) {
+                    prompt.classList.add('expanded');
+                }
+            }
+            
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                setTimeout(() => {
+                    const element = document.getElementById(hash);
+                    if (element) {
+                        const firstPrompt = element.querySelector('.subtitle-with-prompt, .course-subtitle, .family-subtitle, .achievement-subtitle');
+                        if (firstPrompt && firstPrompt.onclick) {
+                            const onclickStr = firstPrompt.getAttribute('onclick');
+                            const contentId = onclickStr.match(/'([^']+)'/)[1];
+                            toggleContent(contentId);
+                        }
+                    }
+                }, 300);
+            }
+        });
+    </script>
 
-					</section>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>
-
-
-
